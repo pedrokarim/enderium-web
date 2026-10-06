@@ -27,4 +27,5 @@ jobs:
       - run: bun run test
       # La construction fait foi sur Linux : c'est là que la production se fabrique.
       - name: Construction
-        run: bun --filter '@enderium/web' run build:ci
+        working-directory: apps/web
+        run: bun run build:ci
