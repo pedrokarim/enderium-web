@@ -38,11 +38,11 @@ ouverte en lecture seule ; le serveur peut tourner en même temps.
 
 ## Plan du dépôt
 
-| Dossier            | Rôle                                                                                                                        |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `apps/web`         | L’application Next.js : `/console`, plus tard `/studio` et le site public                                                   |
-| `packages/game-db` | Accès typé à la base d’Enderium (PostgreSQL, MariaDB, SQLite), dépôt des intentions                                         |
-| `packages/ui`      | Design system « Ender »                                                                                                     |
-| `docs/`            | [Architecture](docs/architecture.md), [contrat des intentions](docs/contracts/intents.md), [authentification](docs/auth.md) |
+| Dossier            | Rôle                                                                                                                                                             |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `apps/web`         | L’application Next.js : `/console`, plus tard `/studio` et le site public                                                                                        |
+| `packages/game-db` | Accès typé à la base d’Enderium (PostgreSQL, MariaDB, SQLite), dépôt des intentions                                                                              |
+| `packages/ui`      | Design system « Ender »                                                                                                                                          |
+| `docs/`            | [Feuille de route](docs/roadmap.md), [architecture](docs/architecture.md), [contrat des intentions](docs/contracts/intents.md), [authentification](docs/auth.md) |
 
 Règles de travail : [`AGENTS.md`](AGENTS.md).

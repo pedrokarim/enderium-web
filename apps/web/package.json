@@ -8,7 +8,8 @@
     "build": "bun --env-file=../../.env.local run next build",
     "start": "bun --env-file=../../.env.local run next start --port 3100",
     "typecheck": "next typegen && tsc --noEmit",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint . --max-warnings 0",
+    "build:ci": "next build"
   },
   "dependencies": {
     "@ascencia/id-core": "0.1.0-rc.1",
