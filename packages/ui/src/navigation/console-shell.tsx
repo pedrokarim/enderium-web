@@ -70,10 +70,10 @@ export function ConsoleShell({
   }, [drawerOpen]);
 
   return (
-    <div className="bg-bg flex min-h-dvh">
+    <div className="bg-chrome flex min-h-dvh">
       <a
         href="#main"
-        className="focus:rounded-field focus:bg-surface focus:text-fg sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:text-sm"
+        className="focus:border-line focus:bg-surface focus:text-fg sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:border-2 focus:px-4 focus:py-2 focus:text-sm"
       >
         {labels.skipToContent}
       </a>
@@ -81,24 +81,28 @@ export function ConsoleShell({
       {drawerOpen ? (
         <div
           aria-hidden
-          className="bg-surface-sunken/70 fixed inset-0 z-30 lg:hidden"
+          className="bg-chrome-raised/80 fixed inset-0 z-30 lg:hidden"
           onClick={() => setDrawerOpen(false)}
         />
       ) : null}
 
       <aside
         className={cn(
-          'border-border bg-surface fixed inset-y-0 left-0 z-40 flex w-62 flex-col border-r',
+          'on-chrome bg-chrome-raised fixed inset-y-0 left-0 z-40 flex w-62 flex-col',
           'transition-transform lg:sticky lg:top-0 lg:h-dvh lg:shrink-0 lg:translate-x-0',
           drawerOpen ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        <div className="border-border flex h-14 shrink-0 items-center justify-between gap-2 border-b px-4">
-          <Link href={brand.href} className="rounded-field flex min-w-0 items-center gap-3">
+        <div className="flex h-14 shrink-0 items-center justify-between gap-2 px-4">
+          <Link href={brand.href} className="flex min-w-0 items-center gap-3">
             <LogoMark size={28} />
             <span className="flex min-w-0 flex-col">
-              <span className="text-fg truncate text-sm leading-4 font-semibold">{brand.name}</span>
-              <span className="text-fg-muted truncate text-xs leading-4">{brand.tagline}</span>
+              <span className="font-pixel text-chrome-fg truncate text-base leading-4 font-medium">
+                {brand.name}
+              </span>
+              <span className="text-chrome-fg-muted truncate text-xs leading-4">
+                {brand.tagline}
+              </span>
             </span>
           </Link>
           <button
@@ -106,7 +110,7 @@ export function ConsoleShell({
             aria-label={labels.closeMenu}
             onClick={() => setDrawerOpen(false)}
             className={buttonClass({
-              variant: 'ghost',
+              variant: 'chrome',
               size: 'sm',
               iconOnly: true,
               className: 'lg:hidden',
@@ -116,12 +120,14 @@ export function ConsoleShell({
           </button>
         </div>
 
-        <nav aria-label={labels.navigation} className="flex-1 overflow-y-auto px-3 py-4">
+        <nav aria-label={labels.navigation} className="flex-1 overflow-y-auto px-3 py-2">
           <div className="flex flex-col gap-6">
             {sections.map((section, index) => (
               <div key={section.label ?? index} className="flex flex-col gap-1">
                 {section.label ? (
-                  <p className="text-fg-subtle px-3 pb-1 text-xs font-medium">{section.label}</p>
+                  <p className="text-chrome-fg-muted px-1 pb-1 text-xs font-medium">
+                    {section.label}
+                  </p>
                 ) : null}
                 <ul className="flex flex-col gap-1">
                   {section.items.map((item) => {
@@ -133,10 +139,10 @@ export function ConsoleShell({
                           aria-current={active ? 'page' : undefined}
                           onClick={() => setDrawerOpen(false)}
                           className={cn(
-                            'rounded-field flex h-9 items-center gap-3 px-3 text-sm pointer-coarse:h-11',
+                            'border-line bevel font-pixel flex h-9 items-center gap-3 border-2 px-3 text-[15px] pointer-coarse:h-11',
                             active
-                              ? 'bg-primary-soft text-primary-fg font-medium'
-                              : 'text-fg-muted hover:bg-surface-sunken hover:text-fg',
+                              ? 'bg-accent text-fg-on-accent bevel-accent font-medium'
+                              : 'bg-nav text-fg-on-nav bevel-nav hover:brightness-110',
                           )}
                         >
                           <span className="shrink-0">{item.icon}</span>
@@ -151,25 +157,27 @@ export function ConsoleShell({
           </div>
         </nav>
 
-        {sidebarFooter ? (
-          <div className="border-border shrink-0 border-t p-3">{sidebarFooter}</div>
-        ) : null}
+        {sidebarFooter ? <div className="shrink-0 p-3">{sidebarFooter}</div> : null}
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="border-border bg-bg sticky top-0 z-20 flex h-14 shrink-0 items-center justify-between gap-3 border-b px-4 lg:px-6">
+        <div className="on-chrome bg-chrome sticky top-0 z-20 flex h-14 shrink-0 items-center justify-between gap-3 px-4">
           <button
             type="button"
             aria-label={labels.openMenu}
             aria-expanded={drawerOpen}
             onClick={() => setDrawerOpen(true)}
-            className={buttonClass({ variant: 'ghost', iconOnly: true, className: 'lg:hidden' })}
+            className={buttonClass({ variant: 'chrome', iconOnly: true, className: 'lg:hidden' })}
           >
             <Menu size={16} aria-hidden />
           </button>
           <div className="ml-auto flex min-w-0 items-center gap-2">{topbar}</div>
         </div>
-        <main id="main" className="min-w-0 flex-1 px-4 py-6 lg:px-6">
+        {/* Le contenu vit dans un grand panneau biseauté, posé sur le châssis. */}
+        <main
+          id="main"
+          className="border-line bg-bg bevel mx-2 mb-2 min-w-0 flex-1 border-2 p-4 lg:mr-4 lg:mb-4 lg:ml-0 lg:p-6"
+        >
           <div className="max-w-[1440px]">{children}</div>
         </main>
       </div>

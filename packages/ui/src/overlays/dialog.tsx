@@ -40,11 +40,11 @@ export function Dialog({ open, onClose, title, description, closeLabel, children
       aria-labelledby={titleId}
       aria-describedby={description ? descriptionId : undefined}
       onClose={onClose}
-      className="rounded-card border-border bg-surface-raised text-fg shadow-overlay m-auto w-[min(32rem,calc(100vw-2rem))] border p-0"
+      className="border-line bg-bg text-fg shadow-overlay bevel m-auto w-[min(32rem,calc(100vw-2rem))] border-2 p-0"
     >
       <div className="flex items-start justify-between gap-4 px-6 pt-6">
         <div className="flex min-w-0 flex-col gap-1">
-          <h2 id={titleId} className="text-fg text-base font-semibold">
+          <h2 id={titleId} className="font-pixel text-fg text-lg font-medium">
             {title}
           </h2>
           {description ? (

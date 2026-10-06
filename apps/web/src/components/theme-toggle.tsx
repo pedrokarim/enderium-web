@@ -24,7 +24,7 @@ export function ThemeToggle() {
   };
 
   return (
-    <Button variant="ghost" iconOnly aria-label="Changer de thème" onClick={toggle}>
+    <Button variant="chrome" iconOnly aria-label="Changer de thème" onClick={toggle}>
       {/* Les deux icônes sont rendues ; le thème actif choisit laquelle se voit. */}
       <Sun size={16} aria-hidden className="hidden dark:block" />
       <Moon size={16} aria-hidden className="dark:hidden" />

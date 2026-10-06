@@ -44,7 +44,7 @@ export function PageHeader({
                   <ChevronRight size={14} aria-hidden className="text-fg-subtle" />
                 ) : null}
                 {crumb.href ? (
-                  <Link href={crumb.href} className="hover:text-fg rounded-[4px] hover:underline">
+                  <Link href={crumb.href} className="hover:text-fg hover:underline">
                     {crumb.label}
                   </Link>
                 ) : (
@@ -62,7 +62,7 @@ export function PageHeader({
           {leading}
           <div className="flex min-w-0 flex-col gap-1">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              <h1 className="text-fg text-xl leading-7 font-semibold tracking-tight">{title}</h1>
+              <h1 className="font-pixel text-fg text-2xl leading-8 font-medium">{title}</h1>
               {meta}
             </div>
             {description ? (
@@ -91,25 +91,29 @@ interface StatTileProps {
   icon?: ReactNode;
 }
 
-/** Un chiffre clé. */
+/**
+ * Un chiffre clé, sur une carte en aplat comme celles des menus du jeu. La
+ * teinte vient de la place de la carte dans sa grille (`StatGrid`) : elle
+ * distingue les cartes entre elles, elle ne dit rien de la valeur.
+ */
 export function StatTile({ label, value, hint, icon }: StatTileProps) {
   return (
-    <div className="rounded-card border-border bg-surface flex min-w-0 flex-col gap-2 border p-4">
-      <div className="text-fg-muted flex items-center justify-between gap-2 text-[13px]">
+    <div className="stat-tile border-line bevel flex min-w-0 flex-col gap-2 border-2 p-4">
+      <div className="font-pixel flex items-center justify-between gap-2 text-[15px] leading-5">
         <span className="truncate">{label}</span>
-        {icon ? <span className="text-fg-subtle shrink-0">{icon}</span> : null}
+        {icon ? <span className="shrink-0">{icon}</span> : null}
       </div>
-      <div className="tabular text-fg truncate text-2xl leading-8 font-semibold tracking-tight">
-        {value}
-      </div>
-      {hint ? <div className="text-fg-muted text-[13px]">{hint}</div> : null}
+      <div className="font-pixel tabular truncate text-[30px] leading-9 font-medium">{value}</div>
+      {hint ? <div className="text-[13px]">{hint}</div> : null}
     </div>
   );
 }
 
 /** Grille de chiffres clés : 1, 2 ou 4 colonnes selon la place. */
 export function StatGrid({ children }: { children: ReactNode }) {
-  return <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">{children}</div>;
+  return (
+    <div className="stat-grid grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">{children}</div>
+  );
 }
 
 interface EmptyStateProps {
@@ -124,12 +128,12 @@ export function EmptyState({ icon, title, description, action }: EmptyStateProps
   return (
     <div className="flex flex-col items-center gap-3 px-4 py-12 text-center">
       {icon ? (
-        <span className="rounded-field bg-surface-sunken text-fg-muted flex size-10 items-center justify-center">
+        <span className="border-line bg-bg text-fg-muted bevel flex size-10 items-center justify-center border-2">
           {icon}
         </span>
       ) : null}
       <div className="flex flex-col gap-1">
-        <p className="text-fg text-sm font-medium">{title}</p>
+        <p className="font-pixel text-fg text-base font-medium">{title}</p>
         {description ? (
           <p className="text-fg-muted max-w-[56ch] text-[13px]">{description}</p>
         ) : null}

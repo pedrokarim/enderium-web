@@ -32,7 +32,7 @@ export function Table({
 
 export function TableHead({ children }: { children: ReactNode }) {
   return (
-    <thead className="border-border text-fg-muted border-b text-[13px]">
+    <thead className="border-line bg-surface-sunken text-fg-muted font-pixel border-b-2 text-sm">
       <tr>{children}</tr>
     </thead>
   );
@@ -43,7 +43,7 @@ export function TableBody({ children }: { children: ReactNode }) {
 }
 
 export function Row({ children, className }: { children: ReactNode; className?: string }) {
-  return <tr className={cn('hover:bg-surface-sunken/60', className)}>{children}</tr>;
+  return <tr className={cn('hover:bg-surface-raised', className)}>{children}</tr>;
 }
 
 interface CellProps {
@@ -110,7 +110,7 @@ export function Pagination({ page, pageSize, total, hrefFor, labels }: Paginatio
   return (
     <nav
       aria-label={labels.navigation}
-      className="border-border flex flex-wrap items-center justify-between gap-3 border-t px-4 py-3"
+      className="border-line bg-bg flex flex-wrap items-center justify-between gap-3 border-t-2 px-4 py-3"
     >
       <p className="tabular text-fg-muted text-[13px]">{labels.summary(from, to, total)}</p>
       <div className="flex items-center gap-2">

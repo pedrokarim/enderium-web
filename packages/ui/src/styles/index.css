@@ -7,6 +7,7 @@
  */
 @import '@fontsource-variable/inter';
 @import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource-variable/pixelify-sans';
 @import './tokens.css';
 
 /* `dark:` suit le thème du design system (forcé par data-theme, sinon le système). */
@@ -28,6 +29,13 @@
   --color-transparent: transparent;
   --color-current: currentColor;
 
+  --color-line: var(--end-line);
+
+  --color-chrome: var(--end-chrome);
+  --color-chrome-raised: var(--end-chrome-raised);
+  --color-chrome-fg: var(--end-chrome-fg);
+  --color-chrome-fg-muted: var(--end-chrome-fg-muted);
+
   --color-bg: var(--end-bg);
   --color-surface: var(--end-surface);
   --color-surface-raised: var(--end-surface-raised);
@@ -38,23 +46,38 @@
   --color-fg: var(--end-fg);
   --color-fg-muted: var(--end-fg-muted);
   --color-fg-subtle: var(--end-fg-subtle);
-  --color-fg-on-primary: var(--end-fg-on-primary);
 
   --color-primary: var(--end-primary);
   --color-primary-hover: var(--end-primary-hover);
   --color-primary-fg: var(--end-primary-fg);
   --color-primary-soft: var(--end-primary-soft);
+  --color-fg-on-primary: var(--end-fg-on-primary);
+
+  --color-accent: var(--end-accent);
+  --color-fg-on-accent: var(--end-fg-on-accent);
+  --color-neutral: var(--end-neutral);
+  --color-fg-on-neutral: var(--end-fg-on-neutral);
+  --color-nav: var(--end-nav);
+  --color-fg-on-nav: var(--end-fg-on-nav);
+
+  --color-danger: var(--end-danger);
+  --color-danger-hover: var(--end-danger-hover);
+  --color-danger-fg: var(--end-danger-fg);
+  --color-danger-soft: var(--end-danger-soft);
+  --color-fg-on-danger: var(--end-fg-on-danger);
+
+  --color-info: var(--end-info);
+  --color-info-fg: var(--end-info-fg);
+  --color-info-soft: var(--end-info-soft);
+  --color-fg-on-info: var(--end-fg-on-info);
 
   --color-success-fg: var(--end-success-fg);
   --color-success-soft: var(--end-success-soft);
   --color-warning-fg: var(--end-warning-fg);
   --color-warning-soft: var(--end-warning-soft);
-  --color-danger: var(--end-danger);
-  --color-danger-hover: var(--end-danger-hover);
-  --color-danger-fg: var(--end-danger-fg);
-  --color-danger-soft: var(--end-danger-soft);
-  --color-info-fg: var(--end-info-fg);
-  --color-info-soft: var(--end-info-soft);
+
+  --color-avatar: var(--end-avatar);
+  --color-fg-on-avatar: var(--end-fg-on-avatar);
 
   --color-chart-1: var(--end-chart-1);
   --color-chart-2: var(--end-chart-2);
@@ -63,12 +86,97 @@
 
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', monospace;
+  /* Titres, chiffres clés, boutons, navigation : jamais le texte courant. */
+  --font-pixel: 'Pixelify Sans Variable', 'Inter Variable', sans-serif;
 
-  --radius-field: 8px;
-  --radius-card: 12px;
-  --radius-pill: 999px;
+  /* Aucun arrondi : tout est taillé au pixel. Les noms restent, pour que les
+     composants disent leur intention (`rounded-card`) et pas une valeur. */
+  --radius-field: 0px;
+  --radius-card: 0px;
+  --radius-pill: 0px;
 
   --shadow-overlay: var(--end-shadow-overlay);
+}
+
+/*
+ * Le biseau : une arête claire en haut à gauche, une arête sombre en bas à
+ * droite, deux pixels chacune. Une variante donne ses deux teintes par
+ * `--bevel-hi` et `--bevel-lo` ; sans elles, c'est le biseau du panneau.
+ */
+@utility bevel {
+  box-shadow:
+    inset 2px 2px 0 var(--bevel-hi, var(--end-bg-hi)),
+    inset -2px -2px 0 var(--bevel-lo, var(--end-bg-lo));
+}
+
+/* Le creux : l'inverse du biseau, pour un champ de saisie ou une case. */
+@utility bevel-inset {
+  box-shadow:
+    inset 2px 2px 0 var(--end-bg-lo),
+    inset -2px -2px 0 var(--end-bg-hi);
+}
+
+@utility bevel-primary {
+  --bevel-hi: var(--end-primary-hi);
+  --bevel-lo: var(--end-primary-lo);
+}
+@utility bevel-accent {
+  --bevel-hi: var(--end-accent-hi);
+  --bevel-lo: var(--end-accent-lo);
+}
+@utility bevel-neutral {
+  --bevel-hi: var(--end-neutral-hi);
+  --bevel-lo: var(--end-neutral-lo);
+}
+@utility bevel-nav {
+  --bevel-hi: var(--end-nav-hi);
+  --bevel-lo: var(--end-nav-lo);
+}
+@utility bevel-danger {
+  --bevel-hi: var(--end-danger-hi);
+  --bevel-lo: var(--end-danger-lo);
+}
+@utility bevel-info {
+  --bevel-hi: var(--end-info-hi);
+  --bevel-lo: var(--end-info-lo);
+}
+@utility bevel-avatar {
+  --bevel-hi: var(--end-avatar-hi);
+  --bevel-lo: var(--end-avatar-lo);
+}
+
+@layer components {
+  /* Cartes de chiffres : bleu, vert, orange, rouge, puis on recommence. */
+  .stat-tile {
+    background: var(--end-neutral);
+    color: var(--end-fg-on-neutral);
+    --bevel-hi: var(--end-neutral-hi);
+    --bevel-lo: var(--end-neutral-lo);
+  }
+  .stat-grid > .stat-tile:nth-child(4n + 1) {
+    background: var(--end-info);
+    color: var(--end-fg-on-info);
+    --bevel-hi: var(--end-info-hi);
+    --bevel-lo: var(--end-info-lo);
+  }
+  .stat-grid > .stat-tile:nth-child(4n + 2) {
+    background: var(--end-primary);
+    color: var(--end-fg-on-primary);
+    --bevel-hi: var(--end-primary-hi);
+    --bevel-lo: var(--end-primary-lo);
+  }
+  .stat-grid > .stat-tile:nth-child(4n + 3) {
+    background: var(--end-accent);
+    color: var(--end-fg-on-accent);
+    --bevel-hi: var(--end-accent-hi);
+    --bevel-lo: var(--end-accent-lo);
+  }
+  .stat-grid > .stat-tile:nth-child(4n + 4) {
+    background: var(--end-danger);
+    color: var(--end-fg-on-danger);
+    --bevel-hi: var(--end-danger-hi);
+    --bevel-lo: var(--end-danger-lo);
+  }
 }
 
 @layer base {
@@ -79,7 +187,7 @@
   }
 
   body {
-    background: var(--end-bg);
+    background: var(--end-chrome);
     color: var(--end-fg);
     font-size: 14px;
     line-height: 20px;
@@ -92,8 +200,8 @@
   }
 
   ::selection {
-    background: var(--end-primary-soft);
-    color: var(--end-fg);
+    background: var(--end-accent);
+    color: var(--end-fg-on-accent);
   }
 
   /* Les chiffres d'un tableau s'alignent en colonne. */
@@ -101,8 +209,14 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* Sur le châssis sombre, l'anneau de focus doit rester visible. */
+  .on-chrome :focus-visible,
+  .on-chrome:focus-visible {
+    outline-color: var(--end-focus-on-chrome);
+  }
+
   dialog::backdrop {
-    background: rgb(5 6 14 / 0.6);
+    background: rgb(8 8 10 / 0.7);
   }
 
   @media (prefers-reduced-motion: reduce) {

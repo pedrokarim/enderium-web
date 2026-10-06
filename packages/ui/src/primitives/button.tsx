@@ -1,25 +1,34 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cn } from '../lib/cn';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+/**
+ * `primary` valide (vert), `secondary` est le bouton neutre, `danger` retire
+ * ou détruit, `ghost` reste à plat dans un panneau, `chrome` reste à plat sur
+ * le châssis sombre (barre du haut, barre latérale).
+ */
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'chrome';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 
 const base =
-  'inline-flex shrink-0 items-center justify-center gap-2 rounded-field font-medium whitespace-nowrap ' +
-  'transition-colors select-none disabled:cursor-not-allowed disabled:opacity-50 ' +
+  'font-pixel inline-flex shrink-0 items-center justify-center gap-2 font-medium whitespace-nowrap ' +
+  'select-none disabled:cursor-not-allowed disabled:opacity-50 ' +
   'aria-disabled:cursor-not-allowed aria-disabled:opacity-50 pointer-coarse:min-h-11';
 
+/** Un bouton en relief : contour, biseau, et un cran d'enfoncement au clic. */
+const raised = 'border-line bevel border-2 hover:brightness-105 active:translate-y-px';
+
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-fg-on-primary hover:bg-primary-hover',
-  secondary: 'border border-border-strong bg-surface text-fg hover:bg-surface-sunken',
+  primary: cn(raised, 'bg-primary text-fg-on-primary bevel-primary'),
+  secondary: cn(raised, 'bg-neutral text-fg-on-neutral bevel-neutral'),
+  danger: cn(raised, 'bg-danger text-fg-on-danger bevel-danger'),
   ghost: 'text-fg-muted hover:bg-surface-sunken hover:text-fg',
-  danger: 'bg-danger text-fg-on-primary hover:bg-danger-hover',
+  chrome: 'on-chrome text-chrome-fg-muted hover:bg-nav hover:text-chrome-fg',
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: 'h-8 text-[13px]',
-  md: 'h-9 text-sm',
-  lg: 'h-11 text-sm',
+  sm: 'h-8 text-sm',
+  md: 'h-9 text-[15px]',
+  lg: 'h-11 text-base',
 };
 
 // Le remplissage dépend de la forme : un bouton d'icône est un carré sans marge,

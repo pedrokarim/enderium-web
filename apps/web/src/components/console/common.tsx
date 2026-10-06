@@ -53,7 +53,7 @@ export function GroupChip({ id, color, href }: { id: string; color?: string; hre
       {color && /^#[0-9a-f]{6}$/i.test(color) ? (
         <span
           aria-hidden
-          className="rounded-pill inline-block size-2"
+          className="border-line inline-block size-3 border"
           style={{ backgroundColor: color }}
         />
       ) : null}

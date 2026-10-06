@@ -39,11 +39,11 @@ export function DailyFlowChart({ points, ticks, labels }: DailyFlowChartProps) {
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
         <ul className="text-fg-muted flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px]">
           <li className="flex items-center gap-2">
-            <span aria-hidden className="bg-chart-1 size-2 rounded-[2px]" />
+            <span aria-hidden className="bg-chart-1 border-line size-3 border" />
             {labels.created}
           </li>
           <li className="flex items-center gap-2">
-            <span aria-hidden className="bg-chart-2 size-2 rounded-[2px]" />
+            <span aria-hidden className="bg-chart-2 border-line size-3 border" />
             {labels.destroyed}
           </li>
         </ul>
@@ -91,7 +91,7 @@ export function DailyFlowChart({ points, ticks, labels }: DailyFlowChartProps) {
                     onFocus={() => setActive(index)}
                     onBlur={() => setActive(null)}
                     className={cn(
-                      'flex size-full items-end justify-center gap-0.5 rounded-[4px] px-0.5',
+                      'flex size-full items-end justify-center gap-0.5 px-0.5',
                       active === index && 'bg-surface-sunken',
                     )}
                   >
@@ -121,7 +121,7 @@ function Bar({ value, top, className }: { value: number; top: number; className:
   const height = Math.max(1.5, (value / top) * 100);
   return (
     <span
-      className={cn('w-full max-w-4 rounded-t-[4px]', className)}
+      className={cn('border-line w-full max-w-4 border-2 border-b-0', className)}
       style={{ height: `${height}%` }}
     />
   );

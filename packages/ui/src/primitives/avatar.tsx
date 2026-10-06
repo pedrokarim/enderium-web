@@ -10,10 +10,10 @@ interface AvatarProps {
 }
 
 const sizes = {
-  24: 'size-6 text-[10px] rounded-[6px]',
-  32: 'size-8 text-xs rounded-field',
-  40: 'size-10 text-sm rounded-field',
-  64: 'size-16 text-xl rounded-card',
+  24: 'size-6 text-[11px]',
+  32: 'size-8 text-[13px]',
+  40: 'size-10 text-[15px]',
+  64: 'size-16 text-2xl',
 } as const;
 
 function initialsOf(name: string): string {
@@ -24,7 +24,7 @@ function initialsOf(name: string): string {
 /** Vignette carrée (comme une tête de joueur). Décorative : le nom est écrit à côté. */
 export function Avatar({ name, src, size = 32, className }: AvatarProps) {
   const box = cn(
-    'inline-flex shrink-0 items-center justify-center overflow-hidden bg-primary-soft font-semibold text-primary-fg',
+    'border-line bg-avatar text-fg-on-avatar bevel bevel-avatar font-pixel inline-flex shrink-0 items-center justify-center overflow-hidden border-2 font-medium',
     sizes[size],
     className,
   );

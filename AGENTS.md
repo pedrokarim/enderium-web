@@ -57,7 +57,23 @@ cadratin ; guillemets « … » ; espace insécable avant `: ; ! ?` ; `…`.
 
 ## 4. Design system
 
-`@enderium/ui` est la seule source de l’interface.
+`@enderium/ui` est la seule source de l’interface. Sa direction s’appelle
+**« Atelier »** : celle des menus d’Enderium en jeu, portée sur le web (choisie
+par Karim le 2026-10-06, planche dans `docs/design/explorations/`).
+
+- **Deux plans** : le châssis sombre (`bg-chrome`, barre latérale, barre du
+  haut) et le panneau gris où vit le contenu (`bg-bg`, encarts en `bg-surface`).
+  Un texte posé sur le châssis prend `text-chrome-fg` / `text-chrome-fg-muted`,
+  un bouton à plat y prend la variante `chrome`.
+- **Contour noir de 2 px** (`border-line border-2`) sur tout ce qui est un
+  objet : encart, bouton, étiquette, champ. **Aucun arrondi.**
+- **Biseau** (`bevel`) sur ce qui est en relief (bouton, carte de chiffre,
+  panneau), biseau inversé (`bevel-inset`) sur ce qui est en creux (champ).
+- **Aplats saturés pour ce qui s’actionne** : vert valide, gris neutre, rouge
+  retire, orange marque l’élément courant. Jamais comme décor.
+- **Police en pixels** (`font-pixel`) pour les titres, chiffres clés, boutons,
+  navigation, en-têtes de tableau et étiquettes. Le texte courant et les
+  cellules de tableau restent en Inter.
 
 - Dans `apps/` : pas de couleur en dur, pas de `var(--…)` dans un `className`,
   pas de bouton ni de carte habillés à la main. On utilise les utilitaires du

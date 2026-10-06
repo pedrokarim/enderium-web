@@ -6,10 +6,10 @@ import type {
 } from 'react';
 import { cn } from '../lib/cn';
 
+// Un champ est un creux dans le panneau : contour franc, biseau inversé.
 const control =
-  'w-full rounded-field border border-border-strong bg-surface text-sm text-fg ' +
-  'placeholder:text-fg-subtle disabled:cursor-not-allowed disabled:opacity-60 ' +
-  'aria-invalid:border-danger pointer-coarse:min-h-11';
+  'border-line bg-surface-raised text-fg placeholder:text-fg-subtle bevel-inset w-full border-2 text-sm ' +
+  'disabled:cursor-not-allowed disabled:opacity-60 aria-invalid:border-danger pointer-coarse:min-h-11';
 
 export function Input({ className, ...rest }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cn(control, 'h-9 px-3', className)} {...rest} />;
@@ -55,7 +55,7 @@ export function Field({ htmlFor, label, hint, error, className, children }: Fiel
         </p>
       ) : null}
       {error ? (
-        <p id={htmlFor + '-error'} role="alert" className="text-danger-fg text-[13px]">
+        <p id={htmlFor + '-error'} role="alert" className="text-danger-fg text-[13px] font-medium">
           {error}
         </p>
       ) : null}

@@ -256,7 +256,7 @@ export default async function PermissionGroupPage({ params, searchParams }: Prop
                       {COLOR_PATTERN.test(group.color) ? (
                         <span
                           aria-hidden
-                          className="rounded-pill inline-block size-2 shrink-0"
+                          className="border-line inline-block size-3 shrink-0 border"
                           style={{ backgroundColor: group.color }}
                         />
                       ) : null}

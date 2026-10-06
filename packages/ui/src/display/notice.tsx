@@ -32,7 +32,7 @@ export function Notice({ tone = 'info', title, children, action, role, className
     <div
       role={role}
       className={cn(
-        'rounded-card flex flex-wrap items-start justify-between gap-x-4 gap-y-3 p-4',
+        'border-line flex flex-wrap items-start justify-between gap-x-4 gap-y-3 border-2 p-4',
         style.box,
         className,
       )}
@@ -40,8 +40,8 @@ export function Notice({ tone = 'info', title, children, action, role, className
       <div className="flex min-w-0 gap-3">
         <span className="mt-0.5 shrink-0">{style.icon}</span>
         <div className="flex min-w-0 flex-col gap-1">
-          <p className="text-sm font-medium">{title}</p>
-          {children ? <div className="text-fg text-[13px]">{children}</div> : null}
+          <p className="font-pixel text-base font-medium">{title}</p>
+          {children ? <div className="text-[13px]">{children}</div> : null}
         </div>
       </div>
       {action ? <div className="shrink-0">{action}</div> : null}

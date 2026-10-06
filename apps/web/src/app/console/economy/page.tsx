@@ -198,7 +198,7 @@ export default async function EconomyPage({
               })}
             />
             <details className="text-[13px]">
-              <summary className="text-fg-muted hover:text-fg w-fit cursor-pointer rounded-[4px]">
+              <summary className="text-fg-muted hover:text-fg w-fit cursor-pointer">
                 Voir les chiffres par jour
               </summary>
               <Table caption="Pièces créées et détruites par jour" className="pt-3">
@@ -263,7 +263,7 @@ export default async function EconomyPage({
                     <Cell>
                       <Link
                         href={hrefWith('/console/economy', { kind: flow.kind })}
-                        className="rounded-[4px] hover:underline"
+                        className="whitespace-nowrap hover:underline"
                       >
                         {ledgerKindLabel(flow.kind)}
                       </Link>

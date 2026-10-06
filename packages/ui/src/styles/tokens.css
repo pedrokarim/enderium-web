@@ -1,123 +1,180 @@
 /*
- * Tokens « Ender ». Trois couches : palette -> sémantique (--end-*) -> utilitaires
- * Tailwind (index.css). Une application ne lit jamais la palette directement.
+ * Tokens « Atelier » : la direction des menus d'Enderium en jeu, portée sur le
+ * web. Panneaux gris, contours noirs francs, biseaux de deux pixels, aplats
+ * saturés pour ce qui s'actionne.
  *
- * Thème : sombre par défaut si le système le demande, forcé par
- * `data-theme="dark" | "light"` sur <html>.
+ * Trois couches : valeurs (ici) -> utilitaires Tailwind (index.css) ->
+ * composants. Une application ne lit jamais ces variables directement.
+ *
+ * Deux plans :
+ *   – le CHÂSSIS (`chrome`) : le fond sombre autour, la barre latérale ;
+ *   – le PANNEAU (`bg`, `surface`…) : là où vit le contenu.
+ * Chaque teinte d'aplat vient avec son biseau : `-hi` (arête éclairée, en haut
+ * à gauche) et `-lo` (arête à l'ombre, en bas à droite).
+ *
+ * Thème : sombre si le système le demande, forcé par `data-theme` sur <html>.
  */
 :root {
   color-scheme: light;
 
-  --end-bg: #f3f4fa;
-  --end-surface: #ffffff;
-  --end-surface-raised: #ffffff;
-  --end-surface-sunken: #eaecf6;
-  --end-border: #dcdfee;
-  --end-border-strong: #bfc4de;
+  --end-line: #121214;
 
-  --end-fg: #161932;
-  --end-fg-muted: #4a5076;
-  --end-fg-subtle: #646a90;
-  --end-fg-on-primary: #ffffff;
+  --end-chrome: #26262b;
+  --end-chrome-raised: #1b1b1f;
+  --end-chrome-fg: #f1f1f4;
+  --end-chrome-fg-muted: #b4b4bd;
 
-  --end-primary: #4d47c9;
-  --end-primary-hover: #413bb3;
-  --end-primary-fg: #4039b8;
-  --end-primary-soft: #e9e8fb;
+  --end-bg: #c6c6c6;
+  --end-bg-hi: #f4f4f4;
+  --end-bg-lo: #8e8e8e;
+  --end-surface: #dcdcdc;
+  --end-surface-raised: #e8e8e8;
+  --end-surface-sunken: #b4b4b8;
+  --end-border: #a6a6ab;
+  --end-border-strong: #121214;
 
-  --end-success-fg: #17734a;
-  --end-success-soft: #dff3e8;
-  --end-warning-fg: #855600;
-  --end-warning-soft: #fbefd3;
-  --end-danger: #bf302d;
-  --end-danger-hover: #a52825;
-  --end-danger-fg: #b12a27;
-  --end-danger-soft: #fbe4e3;
-  --end-info-fg: #1c5ead;
-  --end-info-soft: #e0edfb;
+  --end-fg: #1f1f23;
+  --end-fg-muted: #3f3f46;
+  --end-fg-subtle: #4c4c54;
 
-  /* Séries des graphiques : paire validée (daltonisme, contraste) sur chaque surface. */
+  /* Valider, avancer : le vert des boutons de confirmation en jeu. */
+  --end-primary: #5fc04a;
+  --end-primary-hi: #9be28a;
+  --end-primary-lo: #3f9230;
+  --end-primary-hover: #6bcb56;
+  --end-fg-on-primary: #10300a;
+  --end-primary-fg: #1d5c12;
+  --end-primary-soft: #9be28a;
+
+  /* Sélection, onglet courant : l'orange. */
+  --end-accent: #f0a52a;
+  --end-accent-hi: #ffd27a;
+  --end-accent-lo: #c47d10;
+  --end-fg-on-accent: #3a2603;
+
+  /* Bouton neutre et entrée de navigation au repos. */
+  --end-neutral: #9a9aa0;
+  --end-neutral-hi: #c4c4c9;
+  --end-neutral-lo: #717177;
+  --end-fg-on-neutral: #1c1c20;
+  --end-nav: #5a5a61;
+  --end-nav-hi: #7b7b83;
+  --end-nav-lo: #3f3f45;
+  --end-fg-on-nav: #f1f1f4;
+
+  --end-danger: #c2463b;
+  --end-danger-hi: #e57f75;
+  --end-danger-lo: #8b2c24;
+  --end-danger-hover: #cc5045;
+  --end-fg-on-danger: #ffffff;
+  --end-danger-fg: #8f251b;
+  --end-danger-soft: #f0a39b;
+
+  --end-info: #2a72b8;
+  --end-info-hi: #6fb0e8;
+  --end-info-lo: #1b548c;
+  --end-fg-on-info: #ffffff;
+  --end-info-fg: #154a85;
+  --end-info-soft: #a9d3f5;
+
+  --end-success-fg: #1d5c12;
+  --end-success-soft: #9be28a;
+  --end-warning-fg: #6b4300;
+  --end-warning-soft: #ffd27a;
+
+  --end-avatar: #7a6ad8;
+  --end-avatar-hi: #a99cf0;
+  --end-avatar-lo: #5646b0;
+  --end-fg-on-avatar: #ffffff;
+
+  /* Séries des graphiques : paire validée (daltonisme). Sur ces gris, leur
+     contraste est court : chaque marque porte donc le contour noir. */
   --end-chart-1: #2a78d6;
   --end-chart-2: #eb6834;
 
-  --end-focus: #4d47c9;
-  --end-shadow-overlay: 0 16px 48px rgb(22 25 50 / 0.18);
+  --end-focus: #154a85;
+  --end-focus-on-chrome: #ffd27a;
+  --end-shadow-overlay: 6px 6px 0 rgb(0 0 0 / 0.45);
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --end-bg: #0c0f1e;
-  --end-surface: #14182e;
-  --end-surface-raised: #1a1f3a;
-  --end-surface-sunken: #090b17;
-  --end-border: #252b4d;
-  --end-border-strong: #363e6c;
+  --end-line: #08080a;
 
-  --end-fg: #e9ebf7;
-  --end-fg-muted: #a9afd0;
-  --end-fg-subtle: #8b92b9;
-  --end-fg-on-primary: #ffffff;
+  --end-chrome: #141417;
+  --end-chrome-raised: #0d0d10;
+  --end-chrome-fg: #f1f1f4;
+  --end-chrome-fg-muted: #a9a9b3;
 
-  --end-primary: #5a54d4;
-  --end-primary-hover: #6862de;
-  --end-primary-fg: #aeabff;
-  --end-primary-soft: #23244f;
+  --end-bg: #3a3a41;
+  --end-bg-hi: #56565f;
+  --end-bg-lo: #232328;
+  --end-surface: #46464e;
+  --end-surface-raised: #50505a;
+  --end-surface-sunken: #2e2e34;
+  --end-border: #2a2a30;
+  --end-border-strong: #08080a;
 
-  --end-success-fg: #74dba0;
-  --end-success-soft: #13311f;
-  --end-warning-fg: #f0c268;
-  --end-warning-soft: #362a0c;
-  --end-danger: #c8403d;
-  --end-danger-hover: #d54e4b;
-  --end-danger-fg: #ff9a97;
-  --end-danger-soft: #3a1717;
-  --end-info-fg: #84c5ff;
-  --end-info-soft: #10283f;
+  --end-fg: #f3f3f6;
+  --end-fg-muted: #cfcfd6;
+  --end-fg-subtle: #b9b9c2;
+
+  --end-primary-fg: #a6eb96;
+  --end-primary-soft: #2f6b24;
+  --end-danger-fg: #ffb4ac;
+  --end-danger-soft: #7a2a22;
+  --end-info-fg: #b4dbfa;
+  --end-info-soft: #1f4f80;
+  --end-success-fg: #a6eb96;
+  --end-success-soft: #2f6b24;
+  --end-warning-fg: #ffdc94;
+  --end-warning-soft: #7a5207;
 
   --end-chart-1: #3987e5;
   --end-chart-2: #d95926;
 
-  --end-focus: #aeabff;
-  --end-shadow-overlay: 0 16px 48px rgb(0 0 0 / 0.55);
+  --end-focus: #ffd27a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
     color-scheme: dark;
 
-    --end-bg: #0c0f1e;
-    --end-surface: #14182e;
-    --end-surface-raised: #1a1f3a;
-    --end-surface-sunken: #090b17;
-    --end-border: #252b4d;
-    --end-border-strong: #363e6c;
+    --end-line: #08080a;
 
-    --end-fg: #e9ebf7;
-    --end-fg-muted: #a9afd0;
-    --end-fg-subtle: #8b92b9;
-    --end-fg-on-primary: #ffffff;
+    --end-chrome: #141417;
+    --end-chrome-raised: #0d0d10;
+    --end-chrome-fg: #f1f1f4;
+    --end-chrome-fg-muted: #a9a9b3;
 
-    --end-primary: #5a54d4;
-    --end-primary-hover: #6862de;
-    --end-primary-fg: #aeabff;
-    --end-primary-soft: #23244f;
+    --end-bg: #3a3a41;
+    --end-bg-hi: #56565f;
+    --end-bg-lo: #232328;
+    --end-surface: #46464e;
+    --end-surface-raised: #50505a;
+    --end-surface-sunken: #2e2e34;
+    --end-border: #2a2a30;
+    --end-border-strong: #08080a;
 
-    --end-success-fg: #74dba0;
-    --end-success-soft: #13311f;
-    --end-warning-fg: #f0c268;
-    --end-warning-soft: #362a0c;
-    --end-danger: #c8403d;
-    --end-danger-hover: #d54e4b;
-    --end-danger-fg: #ff9a97;
-    --end-danger-soft: #3a1717;
-    --end-info-fg: #84c5ff;
-    --end-info-soft: #10283f;
+    --end-fg: #f3f3f6;
+    --end-fg-muted: #cfcfd6;
+    --end-fg-subtle: #b9b9c2;
+
+    --end-primary-fg: #a6eb96;
+    --end-primary-soft: #2f6b24;
+    --end-danger-fg: #ffb4ac;
+    --end-danger-soft: #7a2a22;
+    --end-info-fg: #b4dbfa;
+    --end-info-soft: #1f4f80;
+    --end-success-fg: #a6eb96;
+    --end-success-soft: #2f6b24;
+    --end-warning-fg: #ffdc94;
+    --end-warning-soft: #7a5207;
 
     --end-chart-1: #3987e5;
     --end-chart-2: #d95926;
 
-    --end-focus: #aeabff;
-    --end-shadow-overlay: 0 16px 48px rgb(0 0 0 / 0.55);
+    --end-focus: #ffd27a;
   }
 }

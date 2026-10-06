@@ -148,7 +148,7 @@ export default async function JournalPage({
                       <Cell>
                         <Link
                           href={`/console/journal/${intent.id}`}
-                          className="rounded-[4px] font-medium whitespace-nowrap hover:underline"
+                          className="font-medium whitespace-nowrap hover:underline"
                         >
                           {intentKindLabel(intent.kind)}
                         </Link>

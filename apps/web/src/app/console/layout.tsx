@@ -38,14 +38,16 @@ export default async function ConsoleLayout({ children }: { children: ReactNode 
         <div className="flex items-center gap-3">
           <Avatar name={user.displayName} src={user.avatarUrl} size={32} />
           <div className="flex min-w-0 flex-1 flex-col">
-            <span className="text-fg truncate text-sm font-medium">{user.displayName}</span>
-            <span className="text-fg-muted truncate text-xs">
+            <span className="font-pixel text-chrome-fg truncate text-[15px] font-medium">
+              {user.displayName}
+            </span>
+            <span className="text-chrome-fg-muted truncate text-xs">
               {user.roles.length > 0 ? user.roles.join(', ') : 'Aucun rôle'}
             </span>
           </div>
           {/* Vrai formulaire POST : la déconnexion marche sans JavaScript. */}
           <form method="POST" action={SIGN_OUT_ACTION}>
-            <Button type="submit" variant="ghost" size="sm" iconOnly aria-label="Se déconnecter">
+            <Button type="submit" variant="chrome" size="sm" iconOnly aria-label="Se déconnecter">
               <LogOut size={16} aria-hidden />
             </Button>
           </form>

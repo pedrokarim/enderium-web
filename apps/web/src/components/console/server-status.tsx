@@ -46,7 +46,10 @@ export function ServerStatus({ snapshot }: { snapshot: LinkSnapshot }) {
   }
 
   return (
-    <p role="status" className="text-fg-muted flex min-w-0 items-center gap-2 px-2 text-[13px]">
+    <p
+      role="status"
+      className="text-chrome-fg-muted flex min-w-0 items-center gap-2 px-2 text-[13px]"
+    >
       <StatusDot tone={tone} />
       <span className="truncate">{text}</span>
     </p>
