@@ -1,0 +1,116 @@
+/*
+ * Feuille du design system. L'application l'importe APRÈS `tailwindcss` :
+ *
+ *   @import 'tailwindcss';
+ *   @import '@enderium/ui/styles.css';
+ *   @source '../../../../packages/ui/src';
+ */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+@import './tokens.css';
+
+/* `dark:` suit le thème du design system (forcé par data-theme, sinon le système). */
+@custom-variant dark {
+  :root[data-theme='dark'] & {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) & {
+      @slot;
+    }
+  }
+}
+
+@theme inline {
+  /* La palette par défaut de Tailwind est retirée : seules les couleurs
+     sémantiques existent, on ne peut donc pas écrire une couleur en dur. */
+  --color-*: initial;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --color-bg: var(--end-bg);
+  --color-surface: var(--end-surface);
+  --color-surface-raised: var(--end-surface-raised);
+  --color-surface-sunken: var(--end-surface-sunken);
+  --color-border: var(--end-border);
+  --color-border-strong: var(--end-border-strong);
+
+  --color-fg: var(--end-fg);
+  --color-fg-muted: var(--end-fg-muted);
+  --color-fg-subtle: var(--end-fg-subtle);
+  --color-fg-on-primary: var(--end-fg-on-primary);
+
+  --color-primary: var(--end-primary);
+  --color-primary-hover: var(--end-primary-hover);
+  --color-primary-fg: var(--end-primary-fg);
+  --color-primary-soft: var(--end-primary-soft);
+
+  --color-success-fg: var(--end-success-fg);
+  --color-success-soft: var(--end-success-soft);
+  --color-warning-fg: var(--end-warning-fg);
+  --color-warning-soft: var(--end-warning-soft);
+  --color-danger: var(--end-danger);
+  --color-danger-hover: var(--end-danger-hover);
+  --color-danger-fg: var(--end-danger-fg);
+  --color-danger-soft: var(--end-danger-soft);
+  --color-info-fg: var(--end-info-fg);
+  --color-info-soft: var(--end-info-soft);
+
+  --color-chart-1: var(--end-chart-1);
+  --color-chart-2: var(--end-chart-2);
+
+  --color-focus: var(--end-focus);
+
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'Cascadia Code', monospace;
+
+  --radius-field: 8px;
+  --radius-card: 12px;
+  --radius-pill: 999px;
+
+  --shadow-overlay: var(--end-shadow-overlay);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--end-bg);
+    color: var(--end-fg);
+    font-size: 14px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--end-focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--end-primary-soft);
+    color: var(--end-fg);
+  }
+
+  /* Les chiffres d'un tableau s'alignent en colonne. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  dialog::backdrop {
+    background: rgb(5 6 14 / 0.6);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

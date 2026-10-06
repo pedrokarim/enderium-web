@@ -1,0 +1,100 @@
+{
+  "$schema": "https://id.ascencia.re/schemas/manifest-v1.json",
+  "app": "enderium-web",
+  "permissions": [
+    {
+      "key": "console.access",
+      "name": "Entrer dans la console",
+      "description": "Sans cette permission, aucun autre droit de la console ne compte.",
+      "group": "Console"
+    },
+    {
+      "key": "players.read",
+      "name": "Consulter les joueurs",
+      "description": "Fiches, inventaires et historique des joueurs.",
+      "group": "Joueurs"
+    },
+    {
+      "key": "economy.read",
+      "name": "Consulter l'économie",
+      "description": "Soldes, transactions et marchés.",
+      "group": "Économie"
+    },
+    {
+      "key": "economy.write",
+      "name": "Créditer et débiter des comptes",
+      "description": "Dépose des intentions de crédit ou de débit que le serveur exécute.",
+      "group": "Économie"
+    },
+    {
+      "key": "permissions.read",
+      "name": "Consulter les grades et permissions",
+      "description": "Grades en jeu et droits qui leur sont attachés.",
+      "group": "Grades"
+    },
+    {
+      "key": "permissions.write",
+      "name": "Changer les grades",
+      "description": "Attribue ou retire un grade en jeu à un joueur.",
+      "group": "Grades"
+    },
+    {
+      "key": "regions.read",
+      "name": "Consulter les zones",
+      "description": "Zones du monde et leur protection.",
+      "group": "Monde"
+    },
+    {
+      "key": "moderation.read",
+      "name": "Consulter la modération",
+      "description": "Sanctions et signalements.",
+      "group": "Modération"
+    },
+    {
+      "key": "journal.read",
+      "name": "Consulter le journal",
+      "description": "Journal des actions de l'équipe.",
+      "group": "Journal"
+    },
+    {
+      "key": "studio.access",
+      "name": "Entrer dans le studio de contenu",
+      "description": "Édition des définitions de contenu du jeu.",
+      "group": "Studio"
+    }
+  ],
+  "roles": [
+    {
+      "key": "support",
+      "name": "Support",
+      "description": "Lecture seule : joueurs, économie et journal.",
+      "color": "#8b8b9a",
+      "permissions": ["console.access", "players.read", "economy.read", "journal.read"]
+    },
+    {
+      "key": "moderator",
+      "name": "Modérateur",
+      "description": "Lecture seule, avec la modération et les zones en plus.",
+      "color": "#3b82f6",
+      "parent": "support",
+      "permissions": ["moderation.read", "regions.read"]
+    },
+    {
+      "key": "admin",
+      "name": "Administrateur",
+      "description": "Tout lire, créditer des comptes, changer des grades, entrer dans le studio.",
+      "color": "#f5a524",
+      "parent": "moderator",
+      "permissions": ["economy.write", "permissions.read", "permissions.write", "studio.access"]
+    },
+    {
+      "key": "owner",
+      "name": "Propriétaire",
+      "description": "Tout, y compris les permissions ajoutées plus tard.",
+      "color": "#e5484d",
+      "parent": "admin",
+      "permissions": ["*"],
+      "max_holders": 2
+    }
+  ]
+}

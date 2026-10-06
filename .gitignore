@@ -1,0 +1,29 @@
+node_modules/
+dist/
+.next/
+out/
+build/
+
+# Secrets : jamais dans le dépôt, à aucun niveau du monorepo.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+*.log
+coverage/
+.vitest/
+playwright-report/
+test-results/
+*.tsbuildinfo
+next-env.d.ts
+
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Captures de vérification visuelle (gardées en local, hors dépôt).
+.lab/

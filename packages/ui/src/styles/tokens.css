@@ -1,0 +1,123 @@
+/*
+ * Tokens « Ender ». Trois couches : palette -> sémantique (--end-*) -> utilitaires
+ * Tailwind (index.css). Une application ne lit jamais la palette directement.
+ *
+ * Thème : sombre par défaut si le système le demande, forcé par
+ * `data-theme="dark" | "light"` sur <html>.
+ */
+:root {
+  color-scheme: light;
+
+  --end-bg: #f3f4fa;
+  --end-surface: #ffffff;
+  --end-surface-raised: #ffffff;
+  --end-surface-sunken: #eaecf6;
+  --end-border: #dcdfee;
+  --end-border-strong: #bfc4de;
+
+  --end-fg: #161932;
+  --end-fg-muted: #4a5076;
+  --end-fg-subtle: #646a90;
+  --end-fg-on-primary: #ffffff;
+
+  --end-primary: #4d47c9;
+  --end-primary-hover: #413bb3;
+  --end-primary-fg: #4039b8;
+  --end-primary-soft: #e9e8fb;
+
+  --end-success-fg: #17734a;
+  --end-success-soft: #dff3e8;
+  --end-warning-fg: #855600;
+  --end-warning-soft: #fbefd3;
+  --end-danger: #bf302d;
+  --end-danger-hover: #a52825;
+  --end-danger-fg: #b12a27;
+  --end-danger-soft: #fbe4e3;
+  --end-info-fg: #1c5ead;
+  --end-info-soft: #e0edfb;
+
+  /* Séries des graphiques : paire validée (daltonisme, contraste) sur chaque surface. */
+  --end-chart-1: #2a78d6;
+  --end-chart-2: #eb6834;
+
+  --end-focus: #4d47c9;
+  --end-shadow-overlay: 0 16px 48px rgb(22 25 50 / 0.18);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --end-bg: #0c0f1e;
+  --end-surface: #14182e;
+  --end-surface-raised: #1a1f3a;
+  --end-surface-sunken: #090b17;
+  --end-border: #252b4d;
+  --end-border-strong: #363e6c;
+
+  --end-fg: #e9ebf7;
+  --end-fg-muted: #a9afd0;
+  --end-fg-subtle: #8b92b9;
+  --end-fg-on-primary: #ffffff;
+
+  --end-primary: #5a54d4;
+  --end-primary-hover: #6862de;
+  --end-primary-fg: #aeabff;
+  --end-primary-soft: #23244f;
+
+  --end-success-fg: #74dba0;
+  --end-success-soft: #13311f;
+  --end-warning-fg: #f0c268;
+  --end-warning-soft: #362a0c;
+  --end-danger: #c8403d;
+  --end-danger-hover: #d54e4b;
+  --end-danger-fg: #ff9a97;
+  --end-danger-soft: #3a1717;
+  --end-info-fg: #84c5ff;
+  --end-info-soft: #10283f;
+
+  --end-chart-1: #3987e5;
+  --end-chart-2: #d95926;
+
+  --end-focus: #aeabff;
+  --end-shadow-overlay: 0 16px 48px rgb(0 0 0 / 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    --end-bg: #0c0f1e;
+    --end-surface: #14182e;
+    --end-surface-raised: #1a1f3a;
+    --end-surface-sunken: #090b17;
+    --end-border: #252b4d;
+    --end-border-strong: #363e6c;
+
+    --end-fg: #e9ebf7;
+    --end-fg-muted: #a9afd0;
+    --end-fg-subtle: #8b92b9;
+    --end-fg-on-primary: #ffffff;
+
+    --end-primary: #5a54d4;
+    --end-primary-hover: #6862de;
+    --end-primary-fg: #aeabff;
+    --end-primary-soft: #23244f;
+
+    --end-success-fg: #74dba0;
+    --end-success-soft: #13311f;
+    --end-warning-fg: #f0c268;
+    --end-warning-soft: #362a0c;
+    --end-danger: #c8403d;
+    --end-danger-hover: #d54e4b;
+    --end-danger-fg: #ff9a97;
+    --end-danger-soft: #3a1717;
+    --end-info-fg: #84c5ff;
+    --end-info-soft: #10283f;
+
+    --end-chart-1: #3987e5;
+    --end-chart-2: #d95926;
+
+    --end-focus: #aeabff;
+    --end-shadow-overlay: 0 16px 48px rgb(0 0 0 / 0.55);
+  }
+}

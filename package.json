@@ -1,0 +1,34 @@
+{
+  "name": "enderium-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Le site d'Enderium : console d'équipe, puis studio de contenu et site public.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun --filter '@enderium/web' dev",
+    "build": "bun --filter '@enderium/web' build",
+    "start": "bun --filter '@enderium/web' start",
+    "typecheck": "bun --filter '*' typecheck",
+    "lint": "eslint apps packages --max-warnings 0",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json,css}\""
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^16.3.2",
+    "prettier": "^3.9.4",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "bun": ">=1.3.0",
+    "node": ">=24.0.0"
+  }
+}

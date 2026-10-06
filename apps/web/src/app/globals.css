@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+@import '@enderium/ui/styles.css';
+
+/* Le design system est livré en source : Tailwind doit y lire les classes. */
+@source '../../../../packages/ui/src';

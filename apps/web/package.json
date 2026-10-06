@@ -1,0 +1,33 @@
+{
+  "name": "@enderium/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --env-file=../../.env.local run next dev --port 3100",
+    "build": "bun --env-file=../../.env.local run next build",
+    "start": "bun --env-file=../../.env.local run next start --port 3100",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "@ascencia/id-core": "0.1.0-rc.1",
+    "@ascencia/id-server": "0.1.0-rc.1",
+    "@enderium/game-db": "workspace:*",
+    "@enderium/ui": "workspace:*",
+    "jose": "^6.2.10",
+    "lucide-react": "^1.33.0",
+    "next": "^16.3.2",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "zod": "^4.4.3",
+    "server-only": "^0.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "tailwindcss": "^4.3.3"
+  }
+}
